@@ -31,7 +31,7 @@ oc delete -f https://raw.githubusercontent.com/arslankhanali/openshift-helper/ma
 
 #minio - For s3 storage
 sleep 2
-oc delete -f https://raw.githubusercontent.com/arslankhanali/openshift-helper/main/operators/operator_minio.yaml
+oc delete -f https://raw.githubusercontent.com/arslankhanali/openshift-helper/main/applications/operator_minio.yaml
 
 #ai operator
 sleep 30

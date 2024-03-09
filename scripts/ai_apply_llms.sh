@@ -31,7 +31,7 @@ oc apply -f https://raw.githubusercontent.com/arslankhanali/openshift-helper/mai
 
 #minio - For s3 storage
 sleep 2
-oc apply -f https://raw.githubusercontent.com/arslankhanali/openshift-helper/main/operators/operator_minio.yaml
+oc apply -f https://raw.githubusercontent.com/arslankhanali/openshift-helper/main/applications/operator_minio.yaml
 
 #ai operator
 sleep 30
