@@ -1,28 +1,41 @@
 # Login to oc
 
 #odf
-oc delete -f https://raw.githubusercontent.com/arslankhanali/openshift-automations/main/operators/operator_odf.yaml  
+# sleep 2
+# oc apply -f https://raw.githubusercontent.com/arslankhanali/openshift-helper/main/operators/operator_odf.yaml  
+# sleep 30
 
 #nfd
-oc delete -f https://raw.githubusercontent.com/arslankhanali/openshift-automations/main/operators/operator_nfd.yaml
+sleep 2
+oc apply -f https://raw.githubusercontent.com/arslankhanali/openshift-helper/main/operators/operator_nfd.yaml
 
 #nvidia
-oc delete -f https://raw.githubusercontent.com/arslankhanali/openshift-automations/main/operators/operator_nvidia.yaml 
+sleep 2
+oc apply -f https://raw.githubusercontent.com/arslankhanali/openshift-helper/main/operators/operator_nvidia.yaml 
+
+#pipelines
+sleep 2
+oc apply -f https://raw.githubusercontent.com/arslankhanali/openshift-helper/main/operators/operator_pipelines.yaml
 
 #servicemesh
-oc delete -f https://raw.githubusercontent.com/arslankhanali/openshift-automations/main/operators/operator_servicemesh.yaml 
+sleep 2
+oc apply -f https://raw.githubusercontent.com/arslankhanali/openshift-helper/main/operators/operator_servicemesh.yaml 
 
 #serverless
-oc delete -f https://raw.githubusercontent.com/arslankhanali/openshift-automations/main/operators/operator_serverless.yaml 
+sleep 2
+oc apply -f https://raw.githubusercontent.com/arslankhanali/openshift-helper/main/operators/operator_serverless.yaml 
 
 #codeflare
-oc delete -f https://raw.githubusercontent.com/arslankhanali/openshift-automations/main/operators/operator_codeflare.yaml  
+sleep 2
+oc apply -f https://raw.githubusercontent.com/arslankhanali/openshift-helper/main/operators/operator_codeflare.yaml  
 
 #mino
-oc delete -f https://raw.githubusercontent.com/arslankhanali/openshift-automations/main/operators/operator_minio.yaml
+sleep 2
+oc apply -f https://raw.githubusercontent.com/arslankhanali/openshift-helper/main/operators/operator_minio.yaml
 
 #ai operator
-oc delete -f https://raw.githubusercontent.com/arslankhanali/openshift-automations/main/operators/operator_ai.yaml        
+sleep 30
+oc apply -f https://raw.githubusercontent.com/arslankhanali/openshift-helper/main/operators/operator_ai.yaml        
 
 # Values
 echo "https://$(oc get routes.route.openshift.io -n minio  minio-ui -o=jsonpath='{.spec.host}' )"
