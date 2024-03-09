@@ -1,0 +1,16 @@
+apiVersion: operators.coreos.com/v1
+kind: Operator
+metadata:
+  name: crunchy-postgres-operator
+---
+apiVersion: operators.coreos.com/v1alpha1
+kind: Subscription
+metadata:
+  name: crunchy-postgres-operator
+  namespace: openshift-operators
+spec:
+  installPlanApproval: Automatic
+  name: crunchy-postgres-operator
+  source: certified-operators
+  sourceNamespace: openshift-marketplace
+

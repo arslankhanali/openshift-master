@@ -1,0 +1,62 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: openshift-nfd
+---
+apiVersion: operators.coreos.com/v1
+kind: OperatorGroup
+metadata:
+  annotations:
+    olm.providedAPIs: NodeFeature.v1alpha1.nfd.openshift.io,NodeFeatureDiscovery.v1.nfd.openshift.io,NodeFeatureRule.v1alpha1.nfd.openshift.io,NodeResourceTopology.v1alpha1.topology.node.k8s.io,NodeResourceTopology.v1alpha2.topology.node.k8s.io
+  name: openshift-nfd
+  namespace: openshift-nfd
+spec:
+  targetNamespaces:
+  - openshift-nfd
+  upgradeStrategy: Default
+---
+apiVersion: operators.coreos.com/v1
+kind: Operator
+metadata:
+  name: nfd.openshift-nfd
+---
+apiVersion: operators.coreos.com/v1alpha1
+kind: Subscription
+metadata:
+  labels:
+    operators.coreos.com/nfd.openshift-nfd: ""
+  name: nfd
+  namespace: openshift-nfd
+spec:
+  channel: stable
+  installPlanApproval: Automatic
+  name: nfd
+  source: redhat-operators
+  sourceNamespace: openshift-marketplace
+  # startingCSV: nfd.4.13.0-202402081808
+---
+apiVersion: nfd.openshift.io/v1
+kind: NodeFeatureDiscovery
+metadata:
+  name: nfd-instance
+  namespace: openshift-nfd
+spec:
+  instance: ""
+  operand:
+    image: registry.redhat.io/openshift4/ose-node-feature-discovery@sha256:11f8a6e88c1059c00f9dd3f2b6fb07014611efc9c0187967bc669877267a0a99
+    servicePort: 12000
+  topologyUpdater: false
+  workerConfig:
+    configData: |
+      core:
+      #  labelWhiteList:
+      #  noPublish: false
+        sleepInterval: 60s
+      sources:
+        pci:
+          deviceClassWhitelist:
+            - "0200"
+            - "03"
+            - "12"
+          deviceLabelFields:
+            - "vendor"
