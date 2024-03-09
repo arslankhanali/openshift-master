@@ -1,8 +1,8 @@
 #gitops
-oc apply -f https://raw.githubusercontent.com/arslankhanali/openshift-automations/main/operators/operator_gitops.yaml
-#oc delete -f https://raw.githubusercontent.com/arslankhanali/openshift-automations/main/operators/operator_gitops.yaml
+oc apply -f https://raw.githubusercontent.com/arslankhanali/openshift-helper/main/operators/operator_gitops.yaml
+#oc delete -f https://raw.githubusercontent.com/arslankhanali/openshift-helper/main/operators/operator_gitops.yaml
 
-sleep 10
+sleep 30
 oc patch argocd openshift-gitops -n openshift-gitops --type merge --patch '{"spec":{"rbac":{"defaultPolicy":"role:admin"}}}'
 
 sleep 2
