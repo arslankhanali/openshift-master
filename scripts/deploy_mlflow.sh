@@ -7,5 +7,5 @@ sleep 30
 oc apply -f https://raw.githubusercontent.com/arslankhanali/openshift-helper/main/applications/mlflow_template.yaml
 # oc delete -f https://raw.githubusercontent.com/arslankhanali/openshift-helper/main/applications/mlflow_template.yaml
 
-echo "https://$(oc get routes release-name-mlflow-server -n mlflow -o=jsonpath='{.spec.host}')"
+echo "https://$(oc get routes mlflow-mlflow-server -n mlflow -o=jsonpath='{.spec.host}')"
 
