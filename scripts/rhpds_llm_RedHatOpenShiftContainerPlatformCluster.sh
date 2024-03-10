@@ -1,8 +1,8 @@
 # Login to oc
 
-#odf
-oc apply -f https://raw.githubusercontent.com/arslankhanali/openshift-helper/main/operators/operator_odf.yaml  
-sleep 30
+# #odf
+# oc apply -f https://raw.githubusercontent.com/arslankhanali/openshift-helper/main/operators/operator_odf.yaml  
+# sleep 30
 
 #nfd - tags nodes with GPUs
 sleep 2
@@ -37,7 +37,7 @@ oc apply -f https://raw.githubusercontent.com/arslankhanali/openshift-helper/mai
 sleep 30
 oc apply -f https://raw.githubusercontent.com/arslankhanali/openshift-helper/main/crds/nfd_nodefeaturediscovery.yaml      
 oc apply -f https://raw.githubusercontent.com/arslankhanali/openshift-helper/main/crds/nvidia_clusterpolicy.yaml
-oc apply -f https://raw.githubusercontent.com/arslankhanali/openshift-helper/main/crds/odf_storagesystem.yaml
+#oc apply -f https://raw.githubusercontent.com/arslankhanali/openshift-helper/main/crds/odf_storagesystem.yaml
 
 #ai operator
 sleep 30

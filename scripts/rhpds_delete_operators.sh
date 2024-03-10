@@ -1,9 +1,9 @@
 # Login to oc
 
 #odf
-# sleep 2
-# oc delete -f https://raw.githubusercontent.com/arslankhanali/openshift-helper/main/operators/operator_odf.yaml  
-# sleep 30
+sleep 2
+oc delete -f https://raw.githubusercontent.com/arslankhanali/openshift-helper/main/operators/operator_odf.yaml  
+sleep 30
 
 #nfd - tags nodes with GPUs
 sleep 2
@@ -37,5 +37,3 @@ oc delete -f https://raw.githubusercontent.com/arslankhanali/openshift-helper/ma
 sleep 30
 oc delete -f https://raw.githubusercontent.com/arslankhanali/openshift-helper/main/operators/operator_ai.yaml        
 
-# Values
-echo "https://$(oc get routes.route.openshift.io -n minio  minio-ui -o=jsonpath='{.spec.host}' )"
