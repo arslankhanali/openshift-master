@@ -1,0 +1,8 @@
+---
+apiVersion: project.openshift.io/v1
+kind: Project
+metadata:
+  labels:
+    kubernetes.io/metadata.name:  llm
+    opendatahub.io/dashboard: "true"
+  name: llm
