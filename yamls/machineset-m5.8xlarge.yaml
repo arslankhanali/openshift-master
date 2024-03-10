@@ -1,0 +1,77 @@
+apiVersion: machine.openshift.io/v1beta1
+kind: MachineSet
+metadata:
+  annotations:
+    machine.openshift.io/GPU: "0"
+    machine.openshift.io/memoryMb: "131072"
+    machine.openshift.io/vCPU: "32"
+  labels:
+    machine.openshift.io/cluster-api-cluster: cluster-jvn94-5rlvf
+  name: cluster-jvn94-5rlvf-worker-eu-central-1a
+  namespace: openshift-machine-api
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      machine.openshift.io/cluster-api-cluster: cluster-jvn94-5rlvf
+      machine.openshift.io/cluster-api-machineset: cluster-jvn94-5rlvf-worker-eu-central-1a
+  template:
+    metadata:
+      labels:
+        machine.openshift.io/cluster-api-cluster: cluster-jvn94-5rlvf
+        machine.openshift.io/cluster-api-machine-role: worker
+        machine.openshift.io/cluster-api-machine-type: worker
+        machine.openshift.io/cluster-api-machineset: cluster-jvn94-5rlvf-worker-eu-central-1a
+    spec:
+      providerSpec:
+        value:
+          ami:
+            id: ami-0b2586f09f16dd949
+          apiVersion: machine.openshift.io/v1beta1
+          blockDevices:
+          - ebs:
+              encrypted: true
+              iops: 0
+              kmsKey:
+                arn: ""
+              volumeSize: 100
+              volumeType: gp2
+          credentialsSecret:
+            name: aws-cloud-credentials
+          deviceIndex: 0
+          iamInstanceProfile:
+            id: cluster-jvn94-5rlvf-worker-profile
+          instanceType: m5.8xlarge
+          kind: AWSMachineProviderConfig
+          metadata:
+            creationTimestamp: null
+          placement:
+            availabilityZone: eu-central-1a
+            region: eu-central-1
+          securityGroups:
+          - filters:
+            - name: tag:Name
+              values:
+              - cluster-jvn94-5rlvf-worker-sg
+          subnet:
+            filters:
+            - name: tag:Name
+              values:
+              - cluster-jvn94-5rlvf-private-eu-central-1a
+          tags:
+          - name: kubernetes.io/cluster/cluster-jvn94-5rlvf
+            value: owned
+          - name: Stack
+            value: project ocp4-cluster-jvn94
+          - name: env_type
+            value: ocp4-cluster
+          - name: guid
+            value: jvn94
+          - name: owner
+            value: unknown
+          - name: platform
+            value: rhpds
+          - name: uuid
+            value: ee7921d8-6208-5cbf-b453-4f957220b5fb
+          userDataSecret:
+            name: worker-user-data
