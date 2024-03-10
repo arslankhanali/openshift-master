@@ -1,8 +1,0 @@
-#odf
-oc apply -f https://raw.githubusercontent.com/arslankhanali/openshift-helper/main/operators/operator_odf.yaml  
-sleep 60
-
-
-oc apply -f https://raw.githubusercontent.com/arslankhanali/openshift-helper/main/crds/odf_storagesystem.yaml
-# 3xworkers m5.8xlarge 32 cores 124Gb memory
-#oc apply -f https://raw.githubusercontent.com/arslankhanali/openshift-helper/main/crds/odf_storagecluster.yaml
