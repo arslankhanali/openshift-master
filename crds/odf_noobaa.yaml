@@ -1,0 +1,53 @@
+# Should be created automatically - takes time
+apiVersion: noobaa.io/v1alpha1
+kind: NooBaa
+metadata:
+  labels:
+    app: noobaa
+  name: noobaa
+  namespace: openshift-storage
+spec:
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: cluster.ocs.openshift.io/openshift-storage
+            operator: Exists
+  coreResources:
+    limits:
+      cpu: 999m
+      memory: 4Gi
+    requests:
+      cpu: 999m
+      memory: 4Gi
+  dbImage: registry.redhat.io/rhel8/postgresql-12@sha256:cd5b8cb243a0b233a08bdf807df7bc6192a18e1dc322789d6d2e064e9721d8f0
+  dbResources:
+    limits:
+      cpu: 500m
+      memory: 4Gi
+    requests:
+      cpu: 500m
+      memory: 4Gi
+  dbStorageClass: ocs-storagecluster-ceph-rbd
+  dbType: postgres
+  dbVolumeResources:
+    requests:
+      storage: 50Gi
+  endpoints:
+    maxCount: 2
+    minCount: 1
+    resources:
+      limits:
+        cpu: 999m
+        memory: 2Gi
+      requests:
+        cpu: 999m
+        memory: 2Gi
+  image: registry.redhat.io/odf4/mcg-core-rhel8@sha256:59be6c3d63cd278e4aaf621d8ad9de53d446a37a16172a3fcfdda329696f3941
+  pvPoolDefaultStorageClass: ocs-storagecluster-ceph-rbd
+  tolerations:
+  - effect: NoSchedule
+    key: node.ocs.openshift.io/storage
+    operator: Equal
+    value: "true"

@@ -1,0 +1,103 @@
+apiVersion: ocs.openshift.io/v1
+kind: StorageCluster
+metadata:
+  annotations:
+    uninstall.ocs.openshift.io/cleanup-policy: delete
+    uninstall.ocs.openshift.io/mode: graceful
+  creationTimestamp: 2024-03-09T08:53:13Z
+  finalizers:
+  - storagecluster.ocs.openshift.io
+  generation: 2
+  name: ocs-external-storagecluster
+  namespace: openshift-storage
+  ownerReferences:
+  - apiVersion: odf.openshift.io/v1alpha1
+    kind: StorageSystem
+    name: ocs-external-storagecluster-storagesystem
+    uid: 761b5341-01f5-4aca-bf22-9d1866376aab
+  resourceVersion: 680902
+  uid: a82d30be-7e44-4bec-8c1d-65090b0c93de
+spec:
+  arbiter: {}
+  encryption:
+    kms: {}
+  externalStorage:
+    enable: true
+  labelSelector: {}
+  managedResources:
+    cephBlockPools:
+      disableStorageClass: true
+    cephCluster: {}
+    cephConfig: {}
+    cephDashboard: {}
+    cephFilesystems: {}
+    cephNonResilientPools: {}
+    cephObjectStoreUsers: {}
+    cephObjectStores: {}
+    cephRBDMirror: {}
+    cephToolbox: {}
+  mirroring: {}
+status:
+  conditions:
+  - lastHeartbeatTime: 2024-03-09T08:53:41Z
+    lastTransitionTime: 2024-03-09T08:53:41Z
+    message: Version check successful
+    reason: VersionMatched
+    status: False
+    type: VersionMismatch
+  - lastHeartbeatTime: 2024-03-10T04:29:33Z
+    lastTransitionTime: 2024-03-09T08:53:41Z
+    message: Reconcile completed successfully
+    reason: ReconcileCompleted
+    status: True
+    type: ReconcileComplete
+  - lastHeartbeatTime: 2024-03-10T04:29:33Z
+    lastTransitionTime: 2024-03-09T08:56:22Z
+    message: Reconcile completed successfully
+    reason: ReconcileCompleted
+    status: True
+    type: Available
+  - lastHeartbeatTime: 2024-03-10T04:29:33Z
+    lastTransitionTime: 2024-03-10T01:47:04Z
+    message: Reconcile completed successfully
+    reason: ReconcileCompleted
+    status: False
+    type: Progressing
+  - lastHeartbeatTime: 2024-03-10T04:29:33Z
+    lastTransitionTime: 2024-03-09T08:53:41Z
+    message: Reconcile completed successfully
+    reason: ReconcileCompleted
+    status: False
+    type: Degraded
+  - lastHeartbeatTime: 2024-03-10T04:29:33Z
+    lastTransitionTime: 2024-03-09T08:56:22Z
+    message: Reconcile completed successfully
+    reason: ReconcileCompleted
+    status: True
+    type: Upgradeable
+  externalSecretHash: f4439cfac8b74684e5c6aca64a56ff4c4667c8ac7f7f7247e7bf21b4d378f5259f93ec0fe29ff752ae95cf3ef250de9fe0f1eafa6501d7c0a460b74fb4feaf5d
+  images:
+    ceph:
+      desiredImage: registry.redhat.io/rhceph/rhceph-6-rhel9@sha256:9dbd051cfcdb334aad33a536cc115ae1954edaea5f8cb5943ad615f1b41b0226
+    noobaaCore:
+      actualImage: registry.redhat.io/odf4/mcg-core-rhel9@sha256:34c6ad754db3f7365737a3990a8bb45d99a570fb101f410253bfe7812ecebbe7
+      desiredImage: registry.redhat.io/odf4/mcg-core-rhel9@sha256:34c6ad754db3f7365737a3990a8bb45d99a570fb101f410253bfe7812ecebbe7
+    noobaaDB:
+      actualImage: registry.redhat.io/rhel8/postgresql-12@sha256:493358aa1f1f9aa0862fca14e27f972f73a6356b5032fe3b372432f0b6db880a
+      desiredImage: registry.redhat.io/rhel8/postgresql-12@sha256:493358aa1f1f9aa0862fca14e27f972f73a6356b5032fe3b372432f0b6db880a
+  kmsServerConnection: {}
+  phase: Ready
+  relatedObjects:
+  - apiVersion: ceph.rook.io/v1
+    kind: CephCluster
+    name: ocs-external-storagecluster-cephcluster
+    namespace: openshift-storage
+    resourceVersion: 680263
+    uid: e650d132-f1e2-410d-b0dc-5fa450ebc76f
+  - apiVersion: noobaa.io/v1alpha1
+    kind: NooBaa
+    name: noobaa
+    namespace: openshift-storage
+    resourceVersion: 680899
+    uid: e8a37ec4-7d4e-4e2d-ae3c-386a68583f0b
+  version: 4.14.5

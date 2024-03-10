@@ -1,3 +1,13 @@
+# oc get -n openshift-machine-api machinesets cluster-jvn94-5rlvf-worker-eu-central-1a -o yaml | oc neat
+# Changes
+#     cluster-jvn94-5rlvf-worker-eu-central-1a ---- >cluster-jvn94-5rlvf-gpu-eu-central-1a
+#     machine.openshift.io/GPU: "4"
+#     machine.openshift.io/memoryMb: "196608"
+#     machine.openshift.io/vCPU: "48"
+#       replicas: 1
+#           instanceType: g5.12xlarge
+
+
 apiVersion: machine.openshift.io/v1beta1
 kind: MachineSet
 metadata:
@@ -19,8 +29,8 @@ spec:
     metadata:
       labels:
         machine.openshift.io/cluster-api-cluster: cluster-jvn94-5rlvf
-        machine.openshift.io/cluster-api-machine-role: gpu
-        machine.openshift.io/cluster-api-machine-type: gpu
+        machine.openshift.io/cluster-api-machine-role: worker
+        machine.openshift.io/cluster-api-machine-type: worker
         machine.openshift.io/cluster-api-machineset: cluster-jvn94-5rlvf-gpu-eu-central-1a
     spec:
       providerSpec:
@@ -40,7 +50,7 @@ spec:
             name: aws-cloud-credentials
           deviceIndex: 0
           iamInstanceProfile:
-            id: cluster-jvn94-5rlvf-gpu-profile
+            id: cluster-jvn94-5rlvf-worker-profile
           instanceType: g5.12xlarge
           kind: AWSMachineProviderConfig
           metadata:
@@ -52,7 +62,7 @@ spec:
           - filters:
             - name: tag:Name
               values:
-              - cluster-jvn94-5rlvf-gpu-sg
+              - cluster-jvn94-5rlvf-worker-sg
           subnet:
             filters:
             - name: tag:Name

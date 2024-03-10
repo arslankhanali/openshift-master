@@ -1,3 +1,4 @@
+# Manually create
 ---
 kind: StorageSystem
 apiVersion: odf.openshift.io/v1alpha1

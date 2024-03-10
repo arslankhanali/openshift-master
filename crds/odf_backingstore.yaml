@@ -1,0 +1,16 @@
+# Should be created automatically - takes time
+apiVersion: noobaa.io/v1alpha1
+kind: BackingStore
+metadata:
+  labels:
+    app: noobaa
+  name: noobaa-default-backing-store
+  namespace: openshift-storage
+spec:
+  awsS3:
+    region: eu-central-1
+    secret:
+      name: noobaa-aws-cloud-creds-secret
+      namespace: openshift-storage
+    targetBucket: nb.1710044852700.apps.cluster-jvn94.sandbox991.opentlc.com
+  type: aws-s3

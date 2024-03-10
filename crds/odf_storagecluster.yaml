@@ -1,0 +1,24 @@
+# Should be created automatically - takes time
+apiVersion: ocs.openshift.io/v1
+kind: StorageCluster
+metadata:
+  annotations:
+    uninstall.ocs.openshift.io/cleanup-policy: delete
+    uninstall.ocs.openshift.io/mode: graceful
+  name: ocs-storagecluster
+  namespace: openshift-storage
+spec:
+  storageDeviceSets:
+  - count: 1
+    dataPVCTemplate:
+      spec:
+        accessModes:
+        - ReadWriteOnce
+        resources:
+          requests:
+            storage: 2Ti
+        storageClassName: gp3-csi
+        volumeMode: Block
+    name: ocs-deviceset-gp3-csi
+    portable: true
+    replica: 3
