@@ -1,9 +1,8 @@
 # Login to oc
 
 #odf
-# sleep 2
-# oc apply -f https://raw.githubusercontent.com/arslankhanali/openshift-helper/main/operators/operator_odf.yaml  
-# sleep 30
+oc apply -f https://raw.githubusercontent.com/arslankhanali/openshift-helper/main/operators/operator_odf.yaml  
+sleep 30
 
 #nfd - tags nodes with GPUs
 sleep 2
