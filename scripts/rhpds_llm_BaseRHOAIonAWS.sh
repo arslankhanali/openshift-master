@@ -33,12 +33,18 @@ sleep 2
 oc apply -f https://raw.githubusercontent.com/arslankhanali/openshift-helper/main/applications/minio_template.yaml
 
 #crds
-sleep 30
+sleep 10
 oc apply -f https://raw.githubusercontent.com/arslankhanali/openshift-helper/main/crds/nfd_nodefeaturediscovery.yaml      
 oc apply -f https://raw.githubusercontent.com/arslankhanali/openshift-helper/main/crds/nvidia_clusterpolicy.yaml
 oc apply -f https://raw.githubusercontent.com/arslankhanali/openshift-helper/main/crds/odf_storagesystem.yaml
+oc patch console.operator cluster -n openshift-storage --type json -p '[{"op": "add", "path": "/spec/plugins", "value": ["odf-console"]}]'
 
-#ai operator
+# Noobaa
+# odf_storagesyatem should create noobaa. Takes time like 10 mins. Run below if it does not. 
+# sleep 60
+# oc apply -f https://raw.githubusercontent.com/arslankhanali/openshift-helper/main/crds/odf_noobaa.yaml
+
+# ai operator
 # sleep 30
 # oc apply -f https://raw.githubusercontent.com/arslankhanali/openshift-helper/main/operators/operator_ai.yaml  
 

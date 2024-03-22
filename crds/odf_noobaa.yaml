@@ -33,7 +33,7 @@ spec:
   dbType: postgres
   dbVolumeResources:
     requests:
-      storage: 50Gi
+      storage: 100Gi # 50Gi default
   endpoints:
     maxCount: 2
     minCount: 1

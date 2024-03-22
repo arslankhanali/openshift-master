@@ -1,12 +1,12 @@
 # oc get -n openshift-machine-api machinesets cluster-jvn94-5rlvf-worker-eu-central-1a -o yaml | oc neat
 # Changes
-#     cluster-jvn94-5rlvf-worker-eu-central-1a ---- >cluster-jvn94-5rlvf-gpu-eu-central-1a
+#     change name: replace worker with gpu and replace in all 4 places:
+#            cluster-jvn94-5rlvf-worker-eu-central-1a ----> cluster-jvn94-5rlvf-gpu-eu-central-1a
 #     machine.openshift.io/GPU: "4"
 #     machine.openshift.io/memoryMb: "196608"
 #     machine.openshift.io/vCPU: "48"
 #       replicas: 1
 #           instanceType: g5.12xlarge
-
 
 apiVersion: machine.openshift.io/v1beta1
 kind: MachineSet
