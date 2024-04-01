@@ -1,4 +1,6 @@
-# Should be created automatically - takes time
+# Needs 3 worker nodes
+# For Block storage
+# oc get -n openshift-storage storageclusters.ocs.openshift.io ocs-storagecluster -o yaml | oc neat
 apiVersion: ocs.openshift.io/v1
 kind: StorageCluster
 metadata:

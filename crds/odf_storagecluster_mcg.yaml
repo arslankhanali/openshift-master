@@ -1,0 +1,12 @@
+# For MCG(Noobaa) only
+# oc get -n openshift-storage storageclusters.ocs.openshift.io ocs-storagecluster -o yaml | oc neat
+---
+apiVersion: ocs.openshift.io/v1
+kind: StorageCluster
+metadata:
+  name: ocs-storagecluster
+  namespace: openshift-storage
+spec:
+  multiCloudGateway:
+    dbStorageClassName: gp3-csi
+    reconcileStrategy: standalone

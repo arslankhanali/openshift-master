@@ -1,4 +1,5 @@
 # Manually create
+# Make sure you have 3 workers node for block storage
 ---
 kind: StorageSystem
 apiVersion: odf.openshift.io/v1alpha1
