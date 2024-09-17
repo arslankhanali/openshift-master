@@ -2,21 +2,16 @@ apiVersion: v1
 kind: Namespace
 metadata:
   name: redhat-ods-operator
----
-apiVersion: operators.coreos.com/v1
-kind: OperatorGroup
-metadata:
-  annotations:
-    olm.providedAPIs: DSCInitialization.v1.dscinitialization.opendatahub.io,DataScienceCluster.v1.datasciencecluster.opendatahub.io,FeatureTracker.v1.features.opendatahub.io
-  name: redhat-ods-operator
-  namespace: redhat-ods-operator
-spec:
-  upgradeStrategy: Default
----
-apiVersion: operators.coreos.com/v1
-kind: Operator
-metadata:
-  name: rhods-operator.redhat-ods-operator
+# ---
+# apiVersion: operators.coreos.com/v1
+# kind: OperatorGroup
+# metadata:
+#   annotations:
+#     olm.providedAPIs: DSCInitialization.v1.dscinitialization.opendatahub.io,DataScienceCluster.v1.datasciencecluster.opendatahub.io,FeatureTracker.v1.features.opendatahub.io
+#   name: redhat-ods-operator
+#   namespace: redhat-ods-operator
+# spec:
+#   upgradeStrategy: Default
 ---
 apiVersion: operators.coreos.com/v1alpha1
 kind: Subscription
@@ -26,46 +21,8 @@ metadata:
   name: rhods-operator
   namespace: redhat-ods-operator
 spec:
-  channel: fast
+  channel: stable
   installPlanApproval: Automatic
   name: rhods-operator
   source: redhat-operators
   sourceNamespace: openshift-marketplace
----
-apiVersion: datasciencecluster.opendatahub.io/v1
-kind: DataScienceCluster
-metadata:
-  labels:
-    app.kubernetes.io/created-by: rhods-operator
-    app.kubernetes.io/instance: default-dsc
-    app.kubernetes.io/managed-by: kustomize
-    app.kubernetes.io/name: datasciencecluster
-    app.kubernetes.io/part-of: rhods-operator
-  name: default-dsc
-spec:
-  components:
-    codeflare:
-      managementState: Managed
-    dashboard:
-      managementState: Managed
-    datasciencepipelines:
-      managementState: Managed
-    kserve:
-      managementState: Managed
-      serving:
-        ingressGateway:
-          certificate:
-            type: SelfSigned
-        managementState: Managed
-        name: knative-serving
-    modelmeshserving:
-      managementState: Managed
-    ray:
-      managementState: Managed
-    # trustyai:
-    #   managementState: Removed
-    workbenches:
-      managementState: Managed
-
-
-

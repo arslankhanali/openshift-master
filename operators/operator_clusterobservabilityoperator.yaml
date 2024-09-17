@@ -1,9 +1,4 @@
 ---
-apiVersion: operators.coreos.com/v1
-kind: Operator
-metadata:
-  name: cluster-observability-operator.openshift-operators
----
 apiVersion: operators.coreos.com/v1alpha1
 kind: Subscription
 metadata:

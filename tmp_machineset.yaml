@@ -1,0 +1,77 @@
+apiVersion: machine.openshift.io/v1beta1
+kind: MachineSet
+metadata:
+  annotations:
+    machine.openshift.io/GPU: "1"
+    machine.openshift.io/memoryMb: "65536"
+    machine.openshift.io/vCPU: "16"
+  labels:
+    machine.openshift.io/cluster-api-cluster: cluster-t5759-8d55z
+  name: cluster-t5759-8d55z-gpu-us-east-2a
+  namespace: openshift-machine-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      machine.openshift.io/cluster-api-cluster: cluster-t5759-8d55z
+      machine.openshift.io/cluster-api-machineset: cluster-t5759-8d55z-gpu-us-east-2a
+  template:
+    metadata:
+      labels:
+        machine.openshift.io/cluster-api-cluster: cluster-t5759-8d55z
+        machine.openshift.io/cluster-api-machine-role: worker
+        machine.openshift.io/cluster-api-machine-type: worker
+        machine.openshift.io/cluster-api-machineset: cluster-t5759-8d55z-gpu-us-east-2a
+    spec:
+      providerSpec:
+        value:
+          ami:
+            id: ami-01af87a6ecc18023d
+          apiVersion: machine.openshift.io/v1beta1
+          blockDevices:
+          - ebs:
+              encrypted: true
+              iops: 0
+              kmsKey:
+                arn: ""
+              volumeSize: 100
+              volumeType: gp2
+          credentialsSecret:
+            name: aws-cloud-credentials
+          deviceIndex: 0
+          iamInstanceProfile:
+            id: cluster-t5759-8d55z-worker-profile
+          instanceType: g5.4xlarge
+          kind: AWSMachineProviderConfig
+          metadata:
+            creationTimestamp: null
+          placement:
+            availabilityZone: us-east-2a
+            region: us-east-2
+          securityGroups:
+          - filters:
+            - name: tag:Name
+              values:
+              - cluster-t5759-8d55z-worker-sg
+          subnet:
+            filters:
+            - name: tag:Name
+              values:
+              - cluster-t5759-8d55z-private-us-east-2a
+          tags:
+          - name: kubernetes.io/cluster/cluster-t5759-8d55z
+            value: owned
+          - name: Stack
+            value: project ocp4-cluster-t5759
+          - name: env_type
+            value: ocp4-cluster
+          - name: guid
+            value: t5759
+          - name: owner
+            value: unknown
+          - name: platform
+            value: rhpds
+          - name: uuid
+            value: be4237aa-7710-5c5f-9a42-22c02e60dfd3
+          userDataSecret:
+            name: worker-user-data

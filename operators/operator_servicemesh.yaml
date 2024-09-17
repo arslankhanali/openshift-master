@@ -1,9 +1,3 @@
----
-apiVersion: operators.coreos.com/v1
-kind: Operator
-metadata:
-  name: servicemeshoperator.openshift-operators
-
 --- 
 apiVersion: operators.coreos.com/v1alpha1
 kind: Subscription
@@ -18,5 +12,5 @@ spec:
   name: servicemeshoperator
   source: redhat-operators
   sourceNamespace: openshift-marketplace
----
+
 

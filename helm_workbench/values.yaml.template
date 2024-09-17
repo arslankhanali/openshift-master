@@ -1,0 +1,40 @@
+clusterurl: apps.cluster-fnth8.sandbox1251.opentlc.com
+
+# namespace
+project: llm
+namespace: llm
+
+# PVC
+workbenchName: llm-workbench
+storageSize: 100Gi
+storageClassName: gp3-csi
+
+#CM-env variables
+cmName: llm
+cmdata:
+  hugingfacetoken: value1
+  key2: value2
+
+# notebook
+lastImageSelection: pytorch:2023.2
+lastSizeSelection: Large
+acceleratorname: nvidia-gpu
+imageDisplayName: PyTorch
+jupyterImage: image-registry.openshift-image-registry.svc:5000/redhat-ods-applications/pytorch:2023.2
+cpuLimit: "14"
+memoryLimit: 56Gi
+gpu: "1"
+cpuRequest: "7"
+memoryRequest: 40Gi
+oauthProxyImage: registry.redhat.io/openshift4/ose-oauth-proxy@sha256:4bef31eb993feb6f1096b51b4876c65a6fb1f4401fee97fa4f4542b6b7c9bc46
+
+#Dataconnection
+secretName: llm
+secretType: Opaque
+
+secretdata:
+  AWS_ACCESS_KEY_ID: WFYwN0NLc1BNSlRPVzJNRE1tQnQ=
+  AWS_DEFAULT_REGION: LW4gTm9uZQo=
+  AWS_S3_BUCKET: LW4gbGxtLTYyMTllM2I1LWFhZTgtNGIzNy04NTJjLTZmY2Q3MTgwMzM5YQo=
+  AWS_S3_ENDPOINT: LW4gaHR0cDovL3MzLm9wZW5zaGlmdC1zdG9yYWdlLnN2Yzo4MAo=
+  AWS_SECRET_ACCESS_KEY: K3lENytEWDZmZXEzTTEyR05ybEU2TFRVK0dIQlBLOHRIWFpVc2FhdQ==

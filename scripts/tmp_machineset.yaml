@@ -1,0 +1,77 @@
+apiVersion: machine.openshift.io/v1beta1
+kind: MachineSet
+metadata:
+  annotations:
+    machine.openshift.io/GPU: "1"
+    machine.openshift.io/memoryMb: "65536"
+    machine.openshift.io/vCPU: "16"
+  labels:
+    machine.openshift.io/cluster-api-cluster: cluster-nzpgd-mrgz5
+  name: cluster-nzpgd-mrgz5-gpu-us-east-2b
+  namespace: openshift-machine-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      machine.openshift.io/cluster-api-cluster: cluster-nzpgd-mrgz5
+      machine.openshift.io/cluster-api-machineset: cluster-nzpgd-mrgz5-gpu-us-east-2b
+  template:
+    metadata:
+      labels:
+        machine.openshift.io/cluster-api-cluster: cluster-nzpgd-mrgz5
+        machine.openshift.io/cluster-api-machine-role: worker
+        machine.openshift.io/cluster-api-machine-type: worker
+        machine.openshift.io/cluster-api-machineset: cluster-nzpgd-mrgz5-gpu-us-east-2b
+    spec:
+      providerSpec:
+        value:
+          ami:
+            id: ami-01af87a6ecc18023d
+          apiVersion: machine.openshift.io/v1beta1
+          blockDevices:
+          - ebs:
+              encrypted: true
+              iops: 0
+              kmsKey:
+                arn: ""
+              volumeSize: 100
+              volumeType: gp2
+          credentialsSecret:
+            name: aws-cloud-credentials
+          deviceIndex: 0
+          iamInstanceProfile:
+            id: cluster-nzpgd-mrgz5-worker-profile
+          instanceType: g5.4xlarge
+          kind: AWSMachineProviderConfig
+          metadata:
+            creationTimestamp: null
+          placement:
+            availabilityZone: us-east-2b
+            region: us-east-2
+          securityGroups:
+          - filters:
+            - name: tag:Name
+              values:
+              - cluster-nzpgd-mrgz5-worker-sg
+          subnet:
+            filters:
+            - name: tag:Name
+              values:
+              - cluster-nzpgd-mrgz5-private-us-east-2b
+          tags:
+          - name: kubernetes.io/cluster/cluster-nzpgd-mrgz5
+            value: owned
+          - name: Stack
+            value: project ocp4-cluster-nzpgd
+          - name: env_type
+            value: ocp4-cluster
+          - name: guid
+            value: nzpgd
+          - name: owner
+            value: unknown
+          - name: platform
+            value: rhpds
+          - name: uuid
+            value: 2a4e80c4-8529-5bdb-b2cb-98e512ec462b
+          userDataSecret:
+            name: worker-user-data

@@ -1,7 +1,3 @@
-apiVersion: operators.coreos.com/v1
-kind: Operator
-metadata:
-  name: crunchy-postgres-operator
 ---
 apiVersion: operators.coreos.com/v1alpha1
 kind: Subscription

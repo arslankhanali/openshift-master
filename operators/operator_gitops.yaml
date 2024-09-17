@@ -18,11 +18,6 @@ kind: List
 metadata:
   resourceVersion: ""
 ---
-apiVersion: operators.coreos.com/v1
-kind: Operator
-metadata:
-  name: openshift-gitops-operator.openshift-gitops-operator
----
 apiVersion: operators.coreos.com/v1alpha1
 kind: Subscription
 metadata:

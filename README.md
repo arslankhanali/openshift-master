@@ -1,7 +1,10 @@
 #  <span style="color:red">OpenShift Automation </span>  
 Provides bunch of yamls and scripts to `ready openshift cluster` with neccessary `operators` and `CRDs`
 
-
+### <span style="color:green"> Quick Start </span>  
+You have `Base RHOAI on AWS` cluster in `demo.redhat` and want to experiment with GenAI usecase.  
+Run `./scripts/main_llm.sh`
+   
 ### <span style="color:purple"> Motivation: </span>
 - Anyone can take operator installation yamls in `operators` folder and create their own `scripts or GitOps approach`. 
 - Keep it simple and easy to chop/change
@@ -58,7 +61,7 @@ chmod +x rhpds_llm_BaseRHOAIonAWS.sh
 ###  <span style="color:red">Notes</span> 
 1. To deploy operators using yamls
    1. All operators need yamls of kind `operator` and `subscription`
-   2. If they do not deploy in `openshift-operators` namespace then we would also need yamls for `namespace` and `OperatorGroup`
+   2. If they do not deploy in `openshift-operators` namespace then we would also need yamls for `namespace`
       1. See difference betweeen `serverless` and `pipelines` operator yamls. [serverless](https://raw.githubusercontent.com/arslankhanali/openshift-helper/main/operators/operator_serverless.yaml) needs 4 kinds of yamls while [pipelines](https://raw.githubusercontent.com/arslankhanali/openshift-helper/main/operators/operator_pipelines.yaml) just needs 2 because it installs in `openshift-operators` by default
 2. **Operators:** are the mechanisms for managing the applications themselves
 3. **Subscriptions:** are often used for managing the lifecycle of Operators
